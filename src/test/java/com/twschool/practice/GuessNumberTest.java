@@ -5,12 +5,20 @@ import org.junit.Test;
 public class GuessNumberTest {
 
     @Test
-    public void should_return_4A0B_given_void(){
-        GuessNumber guessNumber = new GuessNumber();
+    public void should_return_true_given_1234(){
 
-        String actual = guessNumber.game();
-        String expect = "4A0B";
+        String input = "1 2 3 4";
+        boolean actual = GuessInputCommand.judgeInputFormat(input);
 
-        assert expect.equals(actual);
+        assert actual == true;
+    }
+
+    @Test
+    public void should_return_false_given_134(){
+
+        String input = "1 3 4";
+        boolean actual = GuessInputCommand.judgeInputFormat(input);
+
+        assert actual == false;
     }
 }

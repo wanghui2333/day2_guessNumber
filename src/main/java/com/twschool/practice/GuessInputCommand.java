@@ -23,4 +23,25 @@ public class GuessInputCommand {
         System.out.println("------请输入答案，格式 x x x x , x < 10 ------");
         return bufferedReader.readLine();
     }
+
+    public static boolean judgeInputFormat(String input) {
+        // 去除空字符
+        input = input.replace(" ", "");
+        if(input.length() != 4) {
+            return false;
+        }
+
+        //相同字符串去重
+        StringBuffer sb = new StringBuffer(input);
+
+        String rs = sb.reverse().toString().replaceAll("(.)(?=.*\\1)", "");
+
+        StringBuffer out = new StringBuffer(rs);
+        String result = out.reverse().toString();
+        if(result.length() != 4) {
+            return false;
+        }
+
+        return true;
+    }
 }
