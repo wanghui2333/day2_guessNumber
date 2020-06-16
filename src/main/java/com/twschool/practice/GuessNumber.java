@@ -1,7 +1,8 @@
 package com.twschool.practice;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -13,35 +14,30 @@ import java.util.Set;
  */
 public class GuessNumber {
 
-    public String game() {
+    private List<String> history = new ArrayList<>(10);
 
-        return generateNumber();
-    }
+    public String generateNumber() {
 
-    public String generateNumber(){
-
-        //首先千位不为0
-        String number=String.valueOf((int)(Math.random()*9+1));
-        //再产生其它三位数
-        for(int i=0;i<=2;){
-            String newnumber=String.valueOf((int)(Math.random()*9));
-            if(!number.contains(newnumber)){
-                number=number+newnumber;
+        String number = "";
+        for (int i = 0; i < 4; ) {
+            String newnumber = String.valueOf((int) (Math.random() * 9));
+            if (!number.contains(newnumber)) {
+                number = number + newnumber;
                 i++;
             }
         }
-        return number.replace(""," ").trim();
+        return number.replace("", " ").trim();
     }
 
 
     public String playGame(String input) {
 
-        return this.playGame(input, "1234");
+        return this.playGame(input, "1 2 3 4");
     }
 
 
     public String playGame(String input, String gameAnswer) {
-        if(!GuessInputCommand.judgeInputFormat(input)) {
+        if (!GuessInputCommand.judgeInputFormat(input)) {
             return "用户输入格式错误";
         }
 
@@ -66,6 +62,15 @@ public class GuessNumber {
                 }
             }
         }
-        return correctNumberAndPosition.size() + "A" + correctNumber.size() + "B";
+
+        String ret = correctNumberAndPosition.size() + "A" + correctNumber.size() + "B";
+        history.add(ret);
+
+        return ret;
     }
+
+    public List<String> getHistory() {
+        return history;
+    }
+
 }

@@ -92,4 +92,17 @@ public class GuessNumberTest {
         assert expect.equals(actual);
 
     }
+
+    @Test
+    public void should_return_6_given_count_6(){
+        GuessNumber guessNumber = new GuessNumber();
+        int count = 6;
+
+        for (int i = 0; i < count; i++){
+            guessNumber.playGame(guessNumber.generateNumber(),"1 2 3 4");
+        }
+
+        assert guessNumber.getHistory().size() == count;
+
+    }
 }
