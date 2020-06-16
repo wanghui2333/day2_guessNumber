@@ -14,12 +14,20 @@ public class GuessNumber {
         return generateNumber();
     }
 
-    private String generateNumber(){
+    public String generateNumber(){
 
-        return "4A0B";
+        //首先千位不为0
+        String number=String.valueOf((int)(Math.random()*9+1));
+        //再产生其它三位数
+        for(int i=0;i<=2;){
+            String newnumber=String.valueOf((int)(Math.random()*9));
+            if(!number.contains(newnumber)){
+                number=number+newnumber;
+                i++;
+            }
+        }
+        return number.replace(""," ").trim();
     }
-
-
 
     public static String playGame(String input) throws Exception {
         if(!GuessInputCommand.judgeInputFormat(input)) {

@@ -21,4 +21,16 @@ public class GuessNumberTest {
 
         assert actual == false;
     }
+
+    @Test
+    public void should_return_true_given_void(){
+        GuessNumber guessNumber = new GuessNumber();
+        String number = guessNumber.generateNumber();
+        boolean actual = GuessInputCommand.judgeInputFormat(number);
+
+        assert actual == true;
+
+    }
+
+
 }
