@@ -2,8 +2,6 @@ package com.twschool.practice;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class GuessNumberTest {
 
     @Test
