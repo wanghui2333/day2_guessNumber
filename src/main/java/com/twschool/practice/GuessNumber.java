@@ -32,7 +32,7 @@ public class GuessNumber {
 
     public String playGame(String input) {
 
-        return this.playGame(input, "1 2 3 4");
+        return this.playGame(input, this.generateNumber());
     }
 
 
