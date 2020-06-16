@@ -14,7 +14,7 @@ import java.util.Set;
  */
 public class GuessNumber {
 
-    private List<String> history = new ArrayList<>(10);
+    private List<HistoryResult> history = new ArrayList<>(10);
 
     public String generateNumber() {
 
@@ -38,7 +38,7 @@ public class GuessNumber {
 
     public String playGame(String input, String gameAnswer) {
         if (!GuessInputCommand.judgeInputFormat(input)) {
-            return "用户输入格式错误";
+            return "Wrong Input，Input again";
         }
 
         String[] answer = gameAnswer.split(" ");
@@ -63,14 +63,40 @@ public class GuessNumber {
             }
         }
 
-        String ret = correctNumberAndPosition.size() + "A" + correctNumber.size() + "B";
-        history.add(ret);
+        String output = correctNumberAndPosition.size() + "A" + correctNumber.size() + "B";
 
-        return ret;
+        HistoryResult historyResult = new HistoryResult();
+        historyResult.setOutput(output);
+        historyResult.setInstruction(null);
+
+        history.add(historyResult);
+
+        return output;
     }
 
-    public List<String> getHistory() {
+    public List<HistoryResult> getHistory() {
         return history;
+    }
+
+    class HistoryResult{
+        String output;
+        String Instruction;
+
+        public String getOutput() {
+            return output;
+        }
+
+        public void setOutput(String output) {
+            this.output = output;
+        }
+
+        public String getInstruction() {
+            return Instruction;
+        }
+
+        public void setInstruction(String instruction) {
+            Instruction = instruction;
+        }
     }
 
 }
