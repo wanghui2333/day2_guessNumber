@@ -1,5 +1,9 @@
 package com.twschool.practice;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 功能描述 : TODO
  *
@@ -29,33 +33,39 @@ public class GuessNumber {
         return number.replace(""," ").trim();
     }
 
-    public static String playGame(String input) throws Exception {
+
+    public String playGame(String input) {
+
+        return this.playGame(input, "1234");
+    }
+
+
+    public String playGame(String input, String gameAnswer) {
         if(!GuessInputCommand.judgeInputFormat(input)) {
-            return "error";
+            return "用户输入格式错误";
         }
 
-        String[] answer = { "1", "2", "3", "4" };
+        String[] answer = gameAnswer.split(" ");
         // 值正确，位置不正确
-        int valueCount = 0;
+        Set<String> correctNumber = new HashSet<>(4);
         // 值正确，位置正确
-        int positionCount = 0;
+        Set<String> correctNumberAndPosition = new HashSet<>(4);
 
         String[] result = input.split(" ");
+
         for (int j = 0; j < result.length; j++) {
             for (int k = 0; k < answer.length; k++) {
                 if (result[j].equals(answer[k])) {
                     // 位置相等
                     if (j == k) {
-                        positionCount++;
+                        correctNumberAndPosition.add(result[j]);
                     } else {
                         // 只有值相等
-                        valueCount++;
+                        correctNumber.add(result[j]);
                     }
                 }
             }
         }
-        return positionCount + "A" + valueCount + "B";
+        return correctNumberAndPosition.size() + "A" + correctNumber.size() + "B";
     }
-
-
 }
