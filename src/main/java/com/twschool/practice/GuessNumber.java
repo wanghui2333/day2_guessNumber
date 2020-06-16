@@ -9,4 +9,12 @@ package com.twschool.practice;
  */
 public class GuessNumber {
 
+    public String game() {
+
+        return generateNumber();
+    }
+
+    private String generateNumber(){
+        return "4A0B";
+    }
 }
